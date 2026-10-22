@@ -1,0 +1,9 @@
+source_dir: ???  # Existing text-generated dataset
+data_dir: data/text
+hold: 4.0       # Render assumption; generated audio has no known key-release time
+
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: outputs/prepare_text_data/${now:%Y-%m-%d}/${now:%H-%M-%S-%f}

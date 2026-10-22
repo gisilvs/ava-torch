@@ -1,0 +1,58 @@
+defaults:
+  - training
+  - stft
+  - _self_
+
+output_dir: outputs/train_audio/${now:%Y-%m-%d}/${now:%H-%M-%S-%f}
+batch_size: 128
+epochs: null  # Automatically use 50 for synthetic labels, 200 for text-generated pairs.
+optimizer:
+  lr: 0.0001
+parameters:
+  - gain
+  - mix
+  - attack
+  - decay
+  - sustain
+  - release
+  - cutoff_octaves
+  - q
+  - lfo_rate
+  - lfo_depth
+  - detune_cents
+  - noise_mix
+  - drive
+selector_training: soft  # soft mixtures or hard categorical STE; evaluation is always hard
+gradient_clip: 5.0
+loss: stft_mel  # stft_mel, stft or mse
+mel_weight: 1.0
+
+
+# Extend the shared STFT settings with longer windows for close frequencies.
+stft:
+  fft_sizes: [32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384]
+  hop_sizes: [8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
+  win_lengths: [32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384]
+
+# Log-mel L1 averaged over four resolutions; no A-weighting on this term.
+mel:
+  _target_: auraloss.freq.MultiResolutionSTFTLoss
+  fft_sizes: [256, 512, 1024, 2048]
+  hop_sizes: [64, 128, 256, 512]
+  win_lengths: [256, 512, 1024, 2048]
+  window: hann_window
+  scale: mel
+  n_bins: 32
+  sample_rate: ${synth.sample_rate}
+  w_sc: 0.0
+  w_log_mag: 1.0
+  w_lin_mag: 0.0
+  w_phs: 0.0
+  mag_distance: L1
+  perceptual_weighting: false
+  scale_invariance: false
+
+synth:
+  sample_rate: 24000
+  noise_seed: 0
+  lfo_control_rate: 24000

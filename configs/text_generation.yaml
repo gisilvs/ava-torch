@@ -1,0 +1,33 @@
+data_dir: data/text
+duration: 6.0
+
+generator_dir: outputs/generator_int8  # Same ONNX assets as Ava
+generator_device: cuda  # cuda or cpu; requires the corresponding ONNX Runtime package
+device: cuda            # Torch device for the decoder and pitch tracker (cuda, mps or cpu)
+sample_rate: 24000
+hold: 4.0         # Synth rendering assumption, not a detected release time
+# Retry the same prompt with fresh seeds. If all attempts fail, replace it with
+# a new unique prompt at the end of the queue and continue generation.
+max_attempts_per_sample: 20
+
+pitch:
+  device: ${device}
+  batch_size: 512
+  hop_samples: 160           # One pitch estimate every 10 ms at the tracker's 16 kHz.
+  fmin: 40.0
+  fmax: 1000.0
+  min_periodicity: 0.8       # Minimum CREPE periodicity to count an active frame as voiced.
+  tolerance_cents: 50.0     # Allowed pitch error: half a semitone either way.
+  # All three acceptance conditions must hold:
+  min_voiced_frames: 10     # At least roughly 100 ms of confidently pitched frames.
+  min_voiced_fraction: 0.5  # At least 50% of active frames must be voiced.
+  min_match_fraction: 0.9   # At least 90% of voiced frames must be within tolerance.
+  # A frame is active only when it meets BOTH loudness thresholds:
+  relative_silence_db: -40.0 # Within 40 dB of the loudest frame in this clip.
+  rms_floor: 0.00001        # Absolute RMS floor, including for silent clips.
+
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: outputs/generate_text_conditioned_data/${now:%Y-%m-%d}/${now:%H-%M-%S-%f}

@@ -1,0 +1,39 @@
+seed: 123
+threads: 2
+device: cpu  # cpu or cuda; the filter uses float64, unsupported on MPS
+data_dir: data/synth
+
+synth:
+  sample_rate: 24000
+  noise_seed: 0
+  lfo_control_rate: 24000  # Sample-wise modulation, as in the existing training dataset
+
+dataset:
+  counts: {train: 1000, val: 100, test: 100}  # Sounds, with one new preset per sound
+  midi_min: 21
+  midi_max: 78
+  duration: 6.0
+  note_press_duration: 4.0
+  velocity: 1.0
+  # Physical sampling intervals; these do not restrict the synth's output mappings.
+  # [minimum, maximum, linear or log sampling]
+  ranges:
+    gain: [0.25, 0.8, linear]
+    mix: [0.2, 0.8, linear]
+    attack: [0.01, 0.5, log]
+    decay: [0.05, 1.0, log]
+    sustain: [0.25, 0.9, linear]
+    release: [0.1, 1.8, log]
+    cutoff_octaves: [1.0, 3.0, linear]  # Constrained if needed to leave room for LFO depth
+    q: [0.5, 2.5, log]
+    lfo_rate: [0.5, 8.0, log]
+    lfo_depth: [0.1, 0.75, linear]
+    detune_cents: [3.0, 25.0, linear]
+    noise_mix: [0.0, 0.2, linear]
+    drive: [0.1, 4.0, linear]
+
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: outputs/generate_data/${now:%Y-%m-%d}/${now:%H-%M-%S-%f}

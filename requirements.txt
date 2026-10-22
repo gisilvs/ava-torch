@@ -1,0 +1,24 @@
+# Stable Audio requires PyTorch 2.7.1; match CUDA 12.8 on the cluster.
+torch==2.7.1; sys_platform == "darwin"
+torchaudio==2.7.1; sys_platform == "darwin"
+torch==2.7.1+cu128; sys_platform != "darwin"
+torchaudio==2.7.1+cu128; sys_platform != "darwin"
+
+# Differentiable synth, datasets and training.
+torchlpc==0.7.2
+numpy
+soundfile
+hydra-core==1.3.2
+auraloss==0.4.0
+
+# Audio encoding, text-conditioned generation and pitch checking.
+stable-audio-3 @ git+https://github.com/Stability-AI/stable-audio-3.git@77e0398c26f7d22d801ec1bb036307e8b231f741
+torchcrepe==0.0.24
+tokenizers>=0.22
+
+# Export, quantization and inference. Install only one ONNX Runtime package:
+# CPU on macOS; CUDA 12.8 / cuDNN 9 on Linux/Windows.
+onnx==1.23.2
+onnx-ir==1.0.0
+onnxruntime==1.31.0; sys_platform == "darwin"
+onnxruntime-gpu==1.26.0; sys_platform != "darwin"

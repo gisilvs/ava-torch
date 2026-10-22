@@ -1,0 +1,28 @@
+data_dir: data/synth
+output_dir: outputs/train_params/${now:%Y-%m-%d}/${now:%H-%M-%S-%f}
+device: cuda  # Use mps on a Mac, or cpu
+seed: 123
+init_checkpoint: null  # null starts from scratch; otherwise load model weights
+parameters: null  # null fits all continuous controls; or e.g. [gain, attack]
+epochs: 200
+batch_size: 32
+selector_weight: 0.01
+audio_examples: 10
+ema_decay: 0.999  # Update after each optimizer step; validation uses EMA weights
+
+network:
+  width: 128
+  heads: 4
+  layers: 3
+  feedforward: 256
+  dropout: 0.1
+
+optimizer:
+  lr: 0.001
+  weight_decay: 0.0001
+
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: ${output_dir}/hydra

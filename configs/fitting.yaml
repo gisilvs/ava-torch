@@ -1,0 +1,50 @@
+defaults:
+  - stft
+  - _self_
+
+loss: mse  # mse or stft, using the same spectral loss as audio training
+seed: 123
+threads: 2
+output_dir: outputs/fit/${now:%Y-%m-%d}/${now:%H-%M-%S-%f}
+
+synth:
+  sample_rate: 24000
+  noise_seed: 0
+  lfo_control_rate: 200
+
+note:
+  midi_pitch: 60
+  duration: 6.0
+  note_press_duration: 4.0
+  velocity: 1.0
+
+# Ground-truth physical parameters. Unselected parameters stay fixed at these values.
+preset:
+  gain: 0.2
+  oscillator: 0
+  oscillator_b: null
+  mix: 0.5
+  detune_cents: 0.0
+  noise_mix: 0.0
+  cutoff_octaves: null
+  q: 0.707
+  lfo_rate: null
+  lfo_depth: 0.0
+  drive: 0.0
+  attack: 0.01
+  decay: 0.2
+  sustain: 1.0
+  release: 1.5
+
+fit:
+  parameters: [gain]
+  selector_training: hard  # hard: straight-through; soft: weighted oscillator mixture
+  steps: 200
+  restarts: 4
+  lr: 0.08
+
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: ${output_dir}/hydra

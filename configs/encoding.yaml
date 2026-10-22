@@ -1,0 +1,9 @@
+data_dir: data/synth
+model: small-sfx  # SAME-S from the same Stable Audio checkpoint as previous runs
+device: cuda      # cpu, mps or cuda
+
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: outputs/encode_data/${now:%Y-%m-%d}/${now:%H-%M-%S-%f}

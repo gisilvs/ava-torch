@@ -1,0 +1,16 @@
+defaults:
+  - prompts
+  - _self_
+
+seed: 123
+data_dir: data/text
+duration: 6.0
+# One accepted sound per saved prompt. After exhausting pitch-check retries,
+# audio generation replaces the failed prompt with a new one at the queue's end.
+counts: {train: 1000, val: 100, test: 100}
+
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: outputs/generate_prompts/${now:%Y-%m-%d}/${now:%H-%M-%S-%f}

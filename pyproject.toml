@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ava-torch"
+version = "0.1.0"
+description = "Readable experiments in differentiable synthesis and audio-to-preset learning"
+readme = "README.md"
+requires-python = ">=3.11"
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.packages.find]
+include = ["synth*", "datasets*", "configs", "networks*", "preparation*", "training*", "export*", "fitting*"]
+
+[tool.setuptools.package-data]
+configs = ["*.yaml"]

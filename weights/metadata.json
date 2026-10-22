@@ -1,0 +1,97 @@
+{
+  "text_audio": {
+    "file": "text_audio.pt",
+    "sha256": "8432364c859c227d46633f4cedacd84ef960562deecf8fcde4cd8e873204f40c",
+    "epoch": 197,
+    "weights": "ema",
+    "control_mapping": "synth_v1",
+    "latent_normalization": "none",
+    "feature_shape": [
+      256,
+      66
+    ],
+    "parameters": [
+      "gain",
+      "mix",
+      "attack",
+      "decay",
+      "sustain",
+      "release",
+      "cutoff_octaves",
+      "q",
+      "lfo_rate",
+      "lfo_depth",
+      "detune_cents",
+      "noise_mix",
+      "drive"
+    ],
+    "network": {
+      "width": 128,
+      "heads": 4,
+      "layers": 3,
+      "feedforward": 256,
+      "dropout": 0.1
+    },
+    "validation": {
+      "loss": 1.8885418558120728,
+      "audio_mse": 0.009009195446968078
+    }
+  },
+  "parameter_supervised": {
+    "file": "parameter_supervised.pt",
+    "sha256": "46e75a7c2fbb2f3ea84f0fba8595e4ac710ff39a90d958eb0f274eecd9fbea72",
+    "epoch": 183,
+    "weights": "ema",
+    "control_mapping": "synth_v1",
+    "latent_normalization": "none",
+    "feature_shape": [
+      256,
+      66
+    ],
+    "parameters": [
+      "gain",
+      "mix",
+      "attack",
+      "decay",
+      "sustain",
+      "release",
+      "cutoff_octaves",
+      "q",
+      "lfo_rate",
+      "lfo_depth",
+      "detune_cents",
+      "noise_mix",
+      "drive"
+    ],
+    "network": {
+      "width": 128,
+      "heads": 4,
+      "layers": 3,
+      "feedforward": 256,
+      "dropout": 0.1
+    },
+    "validation": {
+      "loss": 0.0041349826753139494,
+      "mse": 0.0024326554026454688,
+      "ce": 0.17023273109197617,
+      "accuracy_a": 0.9382,
+      "accuracy_b": 0.9438,
+      "pair_accuracy": 0.8888,
+      "parameter_rmse": {
+        "gain": 0.016133105382323265,
+        "mix": 0.04092681035399437,
+        "attack": 0.02156602218747139,
+        "decay": 0.08494962751865387,
+        "sustain": 0.031037990003824234,
+        "release": 0.01200118474662304,
+        "cutoff_octaves": 0.021518101915717125,
+        "q": 0.06059962883591652,
+        "lfo_rate": 0.10090995579957962,
+        "lfo_depth": 0.04467320069670677,
+        "detune_cents": 0.04551379755139351,
+        "noise_mix": 0.037888627499341965,
+        "drive": 0.03285437822341919
+      }
+    }
+  }
+}

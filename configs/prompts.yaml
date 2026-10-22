@@ -1,0 +1,104 @@
+# Preview pitches for user input. Dataset generation samples the ranges below.
+default_pitches:
+  Bass: 40
+  Piano: 60
+  Guitar: 55
+  Trumpet: 60
+  Flute: 72
+  Strings: 60
+  Synth Lead: 72
+  Pad: 60
+
+# Inclusive MIDI bounds, within the current synth's 21–78 range.
+pitch_ranges:
+  Bass: [28, 55]
+  Piano: [36, 78]
+  Guitar: [40, 76]
+  Trumpet: [54, 78]
+  Flute: [60, 78]
+  Strings: [48, 78]
+  Synth Lead: [48, 78]
+  Pad: [36, 72]
+
+# During dataset generation, optionally append one of these everyday sound
+# descriptions to the instrument description. Empty means no extra modifier.
+# User input is used directly; we never append random modifiers to it.
+modifiers:
+  - ''
+  - soft and slightly dusty
+  - bright and crisp
+  - dark and mellow
+  - warm and fuzzy
+  - thin and delicate
+  - thick and gritty
+  - smooth and rounded
+  - hollow and woody
+  - metallic and ringing
+  - airy and breathy
+  - crunchy and rough
+  - gently wavering
+  - short and muted
+  - lingering and slowly fading
+  - gently swelling
+
+# Pick one description from the selected instrument, then optionally a modifier.
+# These describe what a sound should resemble; they are not numerical synth labels.
+# Style names such as supersaw or lo-fi are inspirations, not extra DSP features.
+# Used by generate_prompts.py; build_prompt also accepts free user text.
+instrument_descriptions:
+  Bass:
+    - a squelchy 303-style acid bass
+    - a warm rounded analog bass with a soft edge
+    - a gritty distorted electric bass with a punchy bite
+    - a deep clean sub bass with very little brightness
+    - a hollow rubbery bass with a nasal resonant bite
+    - a short muted funk bass pluck
+  Piano:
+    - a warm lo-fi piano with a soft muted touch
+    - a bright glassy electric piano with a bell-like ring
+    - a dark mellow upright piano with a woody fading ring
+    - a thin brittle toy piano with a short ringing tail
+    - a rounded vintage electric piano with a gentle buzz
+    - a soft felt piano with a delicate fading tone
+  Guitar:
+    - a distorted electric guitar with a rough buzzing edge
+    - a clean electric guitar with a bright rounded pluck
+    - a warm nylon-string guitar with a gentle woody pluck
+    - a metallic steel-string guitar with a crisp fading ring
+    - a muted electric guitar with a short dry pluck
+    - a fuzzy garage guitar with a thick buzzing tone
+  Trumpet:
+    - a dark mellow muted trumpet
+    - a bright brassy trumpet with a sharp punchy bite
+    - a breathy soft jazz trumpet with a soft rounded sound
+    - a raspy overdriven brass tone with a nasal edge
+    - a warm flugelhorn-like tone with a gentle swell
+    - a thin pinched trumpet with a quiet steady buzz
+  Flute:
+    - a woody East Asian bamboo flute with an airy breathy edge
+    - a soft dark wooden flute with a soft rounded sound
+    - a clear bright concert flute with a smooth flowing tone
+    - a hollow recorder-like flute with a gentle whistle
+    - a breathy low flute with a faint noisy texture
+    - a delicate high flute with a thin pure tone
+  Strings:
+    - a warm bowed cello-like tone that gently swells
+    - a bright wiry violin-like tone with a rough bowed edge
+    - a dark silky string tone with a gentle swell
+    - a short woody pizzicato string pluck
+    - a thin nasal vintage string-synth tone
+    - a rich lingering viola-like tone with a soft grainy texture
+  Synth Lead:
+    - a bright supersaw party lead with a thick buzzy sound
+    - a piercing retro arcade lead with a square-wave edge
+    - a smooth rounded sine-like whistle lead
+    - a gritty distorted rave lead with a sharp biting sound
+    - a nasal resonant analog lead with a rubbery bite
+    - a soft hollow triangle-like lead with a gentle rounded sound
+  Pad:
+    - a warm hazy analog pad with a slow swell
+    - a dark hollow pad with a soft lingering tone
+    - a bright airy pad with a breathy noisy edge
+    - a smooth glassy pad that fades away gently
+    - a grainy lo-fi pad with a muted buzzing texture
+    - a soft organ-like pad with a steady rounded sound

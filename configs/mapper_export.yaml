@@ -1,0 +1,10 @@
+checkpoint: ???  # best_parameter_mse.pt or audio-training best.pt
+output_dir: outputs/mapper
+generator_dir: outputs/generator_int8  # Same source model as the training latents
+latent: null  # Optional dataset PT latent for an additional conversion check
+
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: outputs/export_mapper/${now:%Y-%m-%d}/${now:%H-%M-%S-%f}

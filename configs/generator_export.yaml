@@ -1,0 +1,11 @@
+# Run each stage in a separate process to limit memory use.
+# Order: text, verify-text, denoiser, verify-denoiser, quantize.
+stage: text
+output_dir: outputs/generator_fp32
+quantized_dir: outputs/generator_int8
+
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: outputs/export_generator/${now:%Y-%m-%d}/${now:%H-%M-%S-%f}

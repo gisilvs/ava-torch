@@ -1,0 +1,15 @@
+# Shared spectral loss for direct fitting and audio-loss training.
+stft:
+  _target_: auraloss.freq.MultiResolutionSTFTLoss
+  fft_sizes: [32, 64, 128, 256, 512, 1024, 2048]
+  hop_sizes: [8, 16, 32, 64, 128, 256, 512]
+  win_lengths: [32, 64, 128, 256, 512, 1024, 2048]
+  window: hann_window
+  w_sc: 1.0
+  w_log_mag: 1.0
+  w_lin_mag: 0.0
+  w_phs: 0.0
+  mag_distance: L1
+  scale_invariance: false
+  perceptual_weighting: true
+  sample_rate: ${synth.sample_rate}
