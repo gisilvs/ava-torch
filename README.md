@@ -380,8 +380,7 @@ If the package folder already exists, move it aside before packaging again.
 
 ## License
 
-The Python source is [MIT-licensed](LICENSE), copyright 2024–2026 Gianluigi
-Silvestri. The included mapper weights have [separate model terms](weights/LICENSE.md).
+The Python source is [MIT-licensed](LICENSE). The included mapper weights have [separate model terms](weights/LICENSE.md).
 
 **Powered by Stability AI.** Stable Audio, SAME-S and the T5Gemma text encoder
 retain their upstream licenses, including after ONNX export and quantization.

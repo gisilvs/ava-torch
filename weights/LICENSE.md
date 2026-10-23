@@ -1,7 +1,5 @@
 # Ava mapper weights
 
-Copyright (c) 2026 Gianluigi Silvestri.
-
 The mapper weights are excluded from the repository's source-code license.
 They are distributed subject to the Stability AI Community License, provided
 in LICENSE_STABILITY.md. No broader permission over upstream materials is granted.
