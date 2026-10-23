@@ -1,0 +1,20 @@
+Ava text-to-latent generator export
+
+Powered by Stability AI
+
+This Stability AI Model is licensed under the Stability AI Community License,
+Copyright © Stability AI Ltd. All Rights Reserved.
+
+Gemma is provided under and subject to the Gemma Terms of Use found at
+ai.google.dev/gemma/terms.
+
+Source: stabilityai/stable-audio-3-small-sfx, including its T5Gemma-based text
+encoder. Original model weights retain their upstream terms.
+
+Modifications by Gianluigi Silvestri for Ava: the text encoder and denoiser are
+exported separately from PyTorch to ONNX; conditioning is adapted for six-second
+clips; tokenizer data and an eight-step sampling schedule are exported for the
+native loader. INT8 bundles additionally quantize matrix weights to eight bits;
+other operations remain floating point. The manifest records bundle precision.
+
+Retain NOTICE, LICENSE_STABILITY.md and LICENSE_GEMMA.md with this export.

@@ -377,3 +377,13 @@ generator and installer in `build/release/Ava-0.1.0-macos-arm64/`. That folder
 contains the AU, VST3 and standalone versions; run its `install.sh` to install
 them and the shared generator assets. Python is not needed to use the plugin.
 If the package folder already exists, move it aside before packaging again.
+
+## License
+
+The Python source is [MIT-licensed](LICENSE), copyright 2024–2026 Gianluigi
+Silvestri. The included mapper weights have [separate model terms](weights/LICENSE.md).
+
+**Powered by Stability AI.** Stable Audio, SAME-S and the T5Gemma text encoder
+retain their upstream licenses, including after ONNX export and quantization.
+See [third-party notices](THIRD_PARTY_NOTICES.md). Generator exports include the
+required model agreements and notices; keep them with the exported files.

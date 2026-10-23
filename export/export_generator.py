@@ -18,7 +18,7 @@ from stable_audio_3.models.diffusion import DiTWrapper
 from torch import nn
 from torch.onnx.symbolic_helper import parse_args
 
-from export.utils import checksum, save_json, write_manifest
+from export.utils import checksum, copy_model_notices, save_json, write_manifest
 from export.quantize_generator import quantize_bundle
 from preparation.text_prompts import build_prompt
 
@@ -103,6 +103,7 @@ class TextEncoder(nn.Module):
 
 @torch.inference_mode()
 def text_stage(root, config, weights):
+    copy_model_notices(root, generator=True)
     conditioner = create_multi_conditioner_from_conditioning_config(config['model']['conditioning'])
     with safe_open(str(weights), framework='pt') as saved:
         state = {key.removeprefix('conditioner.'): saved.get_tensor(key)

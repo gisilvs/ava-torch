@@ -1,0 +1,13 @@
+Ava mapper weights
+Copyright (c) 2026 Gianluigi Silvestri.
+
+Powered by Stability AI
+
+This Stability AI Model is licensed under the Stability AI Community License,
+Copyright © Stability AI Ltd. All Rights Reserved.
+
+Upstream models: stabilityai/SAME-S and stabilityai/stable-audio-3-small-sfx.
+The independently trained Ava mapper uses their latent representations and,
+for text-audio training, decoded generated audio. The generator weights were not
+copied into the mapper. ONNX mapper files are exports of the Ava checkpoints.
+See the accompanying model license and provenance metadata.

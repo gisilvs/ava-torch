@@ -9,7 +9,7 @@ import onnxruntime as ort
 import torch
 from torch import nn
 
-from export.utils import checksum, save_json
+from export.utils import checksum, copy_model_notices, save_json
 from networks.mapper import ParameterTransformer
 
 
@@ -93,6 +93,7 @@ def main(cfg):
         'encoder': {'checkpoint_sha256': sampler['checkpoint_sha256'],
                     'config_sha256': sampler['config_sha256']},
     })
+    copy_model_notices(output)
     print(f'Exported {path}; ONNX outputs match PyTorch reference cases')
 
 
